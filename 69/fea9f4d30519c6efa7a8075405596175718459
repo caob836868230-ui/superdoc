@@ -1,0 +1,49 @@
+packages/super-editor/src/editors/v1/core/presentation-editor/input/ImeCompositionCommit.test.ts
+  76188588a3b2ef05 1-55
+packages/super-editor/src/editors/v1/extensions/run/calculateInlineRunPropertiesPlugin.js
+  76188588a3b2ef05 123-136,144-171,182-183,188-195,230-238,436
+packages/super-editor/src/editors/v1/extensions/run/wrapTextInRunsPlugin.js
+  76188588a3b2ef05 6-13
+packages/super-editor/src/editors/v1/core/extensions/editable.js
+  76188588a3b2ef05 5-7,118-280,341-348,363,367-372,374-377
+packages/super-editor/src/editors/v1/extensions/paragraph/paragraph.js
+  76188588a3b2ef05 376-379
+packages/super-editor/src/editors/v1/core/presentation-editor/input/ImeCompositionCommit.ts
+  76188588a3b2ef05 1-51
+packages/super-editor/src/editors/v1/core/presentation-editor/PresentationEditor.ts
+  76188588a3b2ef05 65,536-543,4071,4356-4381,4383-4386,4388-4495,4549-4552,5276-5278,5280-5293,5346,5395-5399,7217-7218
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "69fea9f4d30519c6efa7a8075405596175718459",
+  "prompts": {
+    "41a19fcc50feddf4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e4908-7028-7d32-9557-797af615bc7a",
+        "model": "gpt-5.5"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 5,
+      "total_deletions": 4,
+      "accepted_lines": 1,
+      "overriden_lines": 2
+    },
+    "76188588a3b2ef05": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e68ec-7787-7bd0-807d-3f4a719ab6ac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 36162,
+      "total_deletions": 35613,
+      "accepted_lines": 570,
+      "overriden_lines": 2,
+      "messages_url": "https://gitai.tongbaninfo.com/cas/35943896493f65ef6d8547d2077304ee2ab5e0a327bb86dd7e80acc4919e50b3"
+    }
+  }
+}
