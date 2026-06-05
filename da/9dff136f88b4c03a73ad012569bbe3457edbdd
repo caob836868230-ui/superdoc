@@ -1,0 +1,40 @@
+packages/layout-engine/measuring/dom/src/index.ts
+  e62724843f178d1d 2250-2254,2268-2277,2294-2296,2298-2303,2316-2319,2322-2324
+packages/layout-engine/measuring/dom/src/index.test.ts
+  e62724843f178d1d 1474-1499
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "da9dff136f88b4c03a73ad012569bbe3457edbdd",
+  "prompts": {
+    "76188588a3b2ef05": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e68ec-7787-7bd0-807d-3f4a719ab6ac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 10445,
+      "total_deletions": 0,
+      "accepted_lines": 10463,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.tongbaninfo.com/cas/b6ec5e1472b89d66b861a0f9b05083a2658b2f4e520bd9842a776093c9a562cd"
+    },
+    "e62724843f178d1d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e96e3-4e11-7672-99f2-bd43ee568b3a",
+        "model": "gpt-5.4"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 58,
+      "total_deletions": 21,
+      "accepted_lines": 57,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.tongbaninfo.com/cas/3ba7a61e11170437c78d00c64ec8b67bba4983b1d8c1be64c51dbad7d0992a0b"
+    }
+  }
+}
