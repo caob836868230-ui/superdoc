@@ -1,0 +1,51 @@
+packages/layout-engine/measuring/dom/src/index.ts
+  f1323358038bd123 164-165,2263-2272,2277,2311-2314,2316-2332
+shared/font-utils/index.test.js
+  f1323358038bd123 349-353
+shared/common/list-numbering/index.test.ts
+  f1323358038bd123 48-74
+shared/common/list-numbering/index.ts
+  f1323358038bd123 21,34-36
+packages/layout-engine/pm-adapter/src/index.test.ts
+  f1323358038bd123 1418-1445
+packages/layout-engine/pm-adapter/src/converters/paragraph.ts
+  f1323358038bd123 98-117,638,885
+shared/font-utils/index.js
+  f1323358038bd123 70-80,89-92
+packages/layout-engine/measuring/dom/src/index.test.ts
+  f1323358038bd123 1500-1565
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "ea248669d789b3012be5a573e71bc457c799ee0a",
+  "prompts": {
+    "71382e214bbd88f2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ea628-24d4-7182-bb25-1fe9bfa9e36b",
+        "model": "gpt-5.5"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 10,
+      "total_deletions": 0,
+      "accepted_lines": 10,
+      "overriden_lines": 0
+    },
+    "f1323358038bd123": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb056-fc77-7393-bca7-b417918f2b2e",
+        "model": "gpt-5.5"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 229,
+      "total_deletions": 28,
+      "accepted_lines": 201,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.tongbaninfo.com/cas/b511f6894ef2cf17ae453ce9ba15b3afaaa4229a9e431d8c1a9b7d78f8985e9a"
+    }
+  }
+}
