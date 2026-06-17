@@ -1,0 +1,36 @@
+packages/super-editor/src/editors/v1/components/context-menu/constants.js
+  f1323358038bd123 53-81,91,100,109,119,128,137,146,156,165,174,183
+packages/super-editor/src/editors/v1/components/context-menu/menuItems.js
+  f1323358038bd123 141
+packages/layout-engine/style-engine/src/ooxml/table-style-selection.test.ts
+  f1323358038bd123 117-121,123,179,182,185
+packages/super-editor/src/editors/v1/extensions/table/tableHelpers/normalizeNewTableAttrs.js
+  f1323358038bd123 8,30,45,49-50,52-54,73-99
+packages/super-editor/src/editors/v1/components/context-menu/tests/menuItems.test.js
+  f1323358038bd123 340,391
+packages/super-editor/src/editors/v1/extensions/table/table.test.js
+  f1323358038bd123 1477,1493,1495-1566
+packages/layout-engine/style-engine/src/ooxml/table-style-selection.ts
+  f1323358038bd123 115-117,120,123,129,134
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "67cb737475b6e86c5883bec8a3d614dcd7560e12",
+  "prompts": {
+    "f1323358038bd123": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb056-fc77-7393-bca7-b417918f2b2e",
+        "model": "gpt-5.5"
+      },
+      "human_author": "xc",
+      "messages": [],
+      "total_additions": 169,
+      "total_deletions": 92,
+      "accepted_lines": 78282,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.tongbaninfo.com/cas/01d75dad758e74dae871564941f30f4e34db4b963313dbce2a92b83e4a3e18e0"
+    }
+  }
+}
