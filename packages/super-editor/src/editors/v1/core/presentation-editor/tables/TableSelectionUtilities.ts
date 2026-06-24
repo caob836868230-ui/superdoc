@@ -268,22 +268,29 @@ export function getCellPosFromTableHit(
       // Found the target row, now find the cell
       currentPos += 1; // +1 to enter the row node
 
-      // Track logical column position accounting for colspan
+      // `hitTestTableFragment` returns the physical cell index in row.cells /
+      // rowMeasure.cells. Prefer that contract whenever the index is within the
+      // physical row bounds. Re-expanding colspan would map a row such as
+      // [span=2, span=2, span=1] index 2 back into the second cell.
+      if (targetColIndex < row.childCount) {
+        for (let cellIndex = 0; cellIndex < targetColIndex; cellIndex++) {
+          currentPos += row.child(cellIndex).nodeSize;
+        }
+        return currentPos;
+      }
+
+      // Compatibility fallback: older callers may still pass a logical grid
+      // column beyond the physical cell count (for example index 1 for a row
+      // containing one colspan=2 cell).
       let logicalCol = 0;
       for (let cellIndex = 0; cellIndex < row.childCount; cellIndex++) {
         const cell = row.child(cellIndex);
-        // Type guard: Validate colspan is a positive number
         const rawColspan = cell.attrs?.colspan;
         const colspan =
           typeof rawColspan === 'number' && Number.isFinite(rawColspan) && rawColspan > 0 ? rawColspan : 1;
-
-        // Check if target column falls within this cell's span
         if (targetColIndex >= logicalCol && targetColIndex < logicalCol + colspan) {
-          // Found the target cell - return position at cell start
           return currentPos;
         }
-
-        // Move past this cell
         currentPos += cell.nodeSize;
         logicalCol += colspan;
       }
@@ -291,7 +298,6 @@ export function getCellPosFromTableHit(
       // Target column not found in this row (shouldn't happen in valid tables)
       console.warn('[getCellPosFromTableHit] Target column not found in row:', {
         targetColIndex,
-        logicalColReached: logicalCol,
         rowCellCount: row.childCount,
       });
       return null;

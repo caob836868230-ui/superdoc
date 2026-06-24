@@ -369,6 +369,93 @@ describe('clickToPosition', () => {
     expect(result?.blockId).toBe('empty-cell-table');
   });
 
+  it('uses the hit cell width for right-aligned text in a colspan table', () => {
+    const makeParagraph = (id: string, text: string, pmStart: number, alignment?: 'right'): FlowBlock => ({
+      kind: 'paragraph',
+      id,
+      runs: [{ text, fontFamily: 'Arial', fontSize: 16, pmStart, pmEnd: pmStart + text.length }],
+      attrs: alignment ? { alignment } : {},
+    });
+    const makeParagraphMeasure = (textLength: number): Measure => ({
+      kind: 'paragraph',
+      lines: [
+        {
+          fromRun: 0,
+          fromChar: 0,
+          toRun: 0,
+          toChar: textLength,
+          width: 40,
+          maxWidth: 192,
+          ascent: 12,
+          descent: 4,
+          lineHeight: 20,
+        },
+      ],
+      totalHeight: 20,
+    });
+
+    const first = makeParagraph('merged-cell-1', 'A', 100);
+    const second = makeParagraph('merged-cell-2', 'B', 200);
+    const last = makeParagraph('merged-cell-3', 'Right', 300, 'right');
+    const firstMeasure = makeParagraphMeasure(1);
+    const secondMeasure = makeParagraphMeasure(1);
+    const lastMeasure = makeParagraphMeasure(5);
+
+    const tableBlock: TableBlock = {
+      kind: 'table',
+      id: 'colspan-hit-table',
+      rows: [
+        {
+          id: 'row-0',
+          cells: [
+            { id: 'cell-0', colSpan: 2, blocks: [first] },
+            { id: 'cell-1', colSpan: 2, blocks: [second] },
+            { id: 'cell-2', colSpan: 1, blocks: [last] },
+          ],
+        },
+      ],
+    };
+    const tableMeasure: TableMeasure = {
+      kind: 'table',
+      rows: [
+        {
+          height: 28,
+          cells: [
+            { width: 200, height: 28, gridColumnStart: 0, colSpan: 2, rowSpan: 1, blocks: [firstMeasure] },
+            { width: 200, height: 28, gridColumnStart: 2, colSpan: 2, rowSpan: 1, blocks: [secondMeasure] },
+            { width: 200, height: 28, gridColumnStart: 4, colSpan: 1, rowSpan: 1, blocks: [lastMeasure] },
+          ],
+        },
+      ],
+      columnWidths: [100, 100, 100, 100, 200],
+      totalWidth: 600,
+      totalHeight: 28,
+    };
+    const tableFragment: TableFragment = {
+      kind: 'table',
+      blockId: 'colspan-hit-table',
+      fromRow: 0,
+      toRow: 1,
+      x: 30,
+      y: 40,
+      width: 600,
+      height: 28,
+    };
+    const layout: Layout = {
+      pageSize: { w: 700, h: 500 },
+      pages: [{ number: 1, margins: { top: 0, right: 0, bottom: 0, left: 0 }, fragments: [tableFragment] }],
+    };
+
+    // The last cell starts at x=430. Its 192px content box right-aligns the
+    // 40px line at x=152..192. Clicking near that visual right edge should map
+    // near the end of "Right", not to the start as it did when table width was used.
+    const result = clickToPosition(layout, [tableBlock], [tableMeasure], { x: 622, y: 50 });
+
+    expect(result).not.toBeNull();
+    expect(result?.blockId).toBe('colspan-hit-table');
+    expect(result?.pos).toBeGreaterThan(302);
+  });
+
   it('falls back to visual x when a table fragment has no columnIndex', () => {
     // Legacy fragments without columnIndex should still resolve a column via fragment.x.
     const cellParagraph: FlowBlock = {

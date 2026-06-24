@@ -304,6 +304,33 @@ describe('TableSelectionUtilities', () => {
       }
     });
 
+    it('selects the physical last cell when preceding cells have colspan', () => {
+      const cell = (text: string, colspan = 1) =>
+        tableSchema.node('tableCell', { colspan, rowspan: 1 }, [
+          tableSchema.node('paragraph', null, [tableSchema.text(text)]),
+        ]);
+      const row = (...cells: ReturnType<typeof cell>[]) => tableSchema.node('tableRow', null, cells);
+
+      // Visual row has three cells backed by five grid columns:
+      // [first span=2] [second span=2] [last span=1].
+      const table = tableSchema.node('table', null, [row(cell('First', 2), cell('Second', 2), cell('Last'))]);
+      const doc = tableSchema.node('doc', null, [table]);
+      const state = EditorState.create({ schema: tableSchema, doc });
+      const blocks: FlowBlock[] = [{ kind: 'table', id: '0-table', rows: [] }];
+      const hit: TableHitResult = {
+        block: { id: '0-table', kind: 'table' } as FlowBlock,
+        cellRowIndex: 0,
+        cellColIndex: 2,
+        fragment: {} as TableHitResult['fragment'],
+        pageIndex: 0,
+      };
+
+      const result = getCellPosFromTableHit(hit, state.doc, blocks);
+
+      expect(result).not.toBeNull();
+      expect(state.doc.nodeAt(result!)?.textContent).toBe('Last');
+    });
+
     it('IT-22: handles selecting last column in row with rowspan from previous row', () => {
       // This test verifies the specific bug reported in IT-22:
       // When a table has rowspan, clicking the last column in affected rows

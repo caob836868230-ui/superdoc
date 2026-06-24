@@ -1178,11 +1178,18 @@ export function clickToPositionGeometry(
       const paraIndentRight = Number.isFinite(indentRight) ? indentRight : 0;
 
       const totalIndent = paraIndentLeft + paraIndentRight;
-      let availableWidth = Math.max(0, tableHit.fragment.width - totalIndent);
+      const hitCellMeasure = tableHit.measure.rows[tableHit.cellRowIndex]?.cells[tableHit.cellColIndex];
+      const hitCell = tableHit.block.rows[tableHit.cellRowIndex]?.cells[tableHit.cellColIndex];
+      const cellPadding = hitCell?.attrs?.padding ?? { top: 0, left: 4, right: 4, bottom: 0 };
+      const cellContentWidth = Math.max(
+        0,
+        (hitCellMeasure?.width ?? tableHit.fragment.width) - (cellPadding.left ?? 4) - (cellPadding.right ?? 4),
+      );
+      let availableWidth = Math.max(0, cellContentWidth - totalIndent);
 
-      if (totalIndent > tableHit.fragment.width) {
+      if (totalIndent > cellContentWidth) {
         console.warn(
-          `[clickToPosition:table] Paragraph indents (${totalIndent}px) exceed fragment width (${tableHit.fragment.width}px) ` +
+          `[clickToPosition:table] Paragraph indents (${totalIndent}px) exceed cell content width (${cellContentWidth}px) ` +
             `for block ${tableHit.fragment.blockId}. This may indicate a layout miscalculation. ` +
             `Available width clamped to 0.`,
         );
