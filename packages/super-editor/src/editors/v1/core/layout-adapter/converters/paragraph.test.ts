@@ -1182,6 +1182,32 @@ describe('paragraph converters', () => {
         expect(paraBlock.runs[0].fontSize).toBeGreaterThan(0);
       });
 
+      it('preserves caret PM range for a list paragraph that contains only an empty run wrapper', () => {
+        const para: PMNode = {
+          type: 'paragraph',
+          attrs: {
+            paragraphProperties: {
+              numberingProperties: { numId: 7, ilvl: 0 },
+            },
+            listRendering: {
+              numberingType: 'chineseCounting',
+              path: [3],
+              markerText: '三、',
+            },
+          },
+          content: [{ type: 'run', content: [] }],
+        };
+        positions.set(para, { start: 0, end: 2 });
+
+        const blocks = paragraphToFlowBlocks(para, nextBlockId, positions, 'Arial', 16);
+
+        expect(blocks).toHaveLength(1);
+        expect(blocks[0]).toMatchObject({
+          kind: 'paragraph',
+          runs: [{ text: '', pmStart: 1, pmEnd: 1 }],
+        });
+      });
+
       it('flags empty sectPr paragraph as a section marker', () => {
         const para: PMNode = {
           type: 'paragraph',

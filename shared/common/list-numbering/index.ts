@@ -20,6 +20,7 @@ const handleCustom: NumberingHandler = (path, lvlText, customFormat) =>
   generateFromCustom(path, lvlText, customFormat as string);
 const handleJapaneseCounting: NumberingHandler = (path, lvlText) =>
   generateNumbering(path, lvlText, intToJapaneseCounting);
+const handleChineseCounting: NumberingHandler = handleJapaneseCounting;
 const handleDecimalZero: NumberingHandler = (path, lvlText) => generateNumbering(path, lvlText, decimalZeroFormatter);
 
 const listIndexMap: Record<string, NumberingHandler> = {
@@ -34,6 +35,9 @@ const listIndexMap: Record<string, NumberingHandler> = {
   cardinalText: handleCardinalText,
   custom: handleCustom,
   japaneseCounting: handleJapaneseCounting,
+  chineseCounting: handleChineseCounting,
+  chineseCountingThousand: handleChineseCounting,
+  chineseLegalSimplified: handleChineseCounting,
 };
 
 export interface GenerateOrderedListIndexOptions {
