@@ -1,0 +1,20 @@
+packages/layout-engine/measuring/dom/src/autofit-normalize.test.ts
+  h_67fe437ad4aaad 740-774
+packages/super-editor/src/editors/v1/core/layout-adapter/converters/table.test.ts
+  h_67fe437ad4aaad 1889-1997
+packages/super-editor/src/editors/v1/core/layout-adapter/converters/table.ts
+  h_67fe437ad4aaad 734,738-750,755,767,776-782,1060-1063
+packages/super-editor/src/editors/v1/extensions/table/table.test.js
+  h_67fe437ad4aaad 9,1605-1683
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "6e9fe490f2a346675179fa387d79a58e9385ce56",
+  "prompts": {},
+  "humans": {
+    "h_67fe437ad4aaad": {
+      "author": "caob <caob@tongbaninfo.com>"
+    }
+  }
+}
